@@ -254,29 +254,42 @@ $('document').ready(function(){
 		createFloatingEmojis('💌', 15);
 		
 		$(this).fadeOut('slow');
+		
+		// Force hide all 6 balloons
+		$('.balloons').hide();
+		$('#b1').hide();
+		$('#b2').hide();
+		$('#b3').hide();
+		$('#b4').hide();
+		$('#b5').hide();
+		$('#b6').hide();
+		$('#b7').hide();
+		
+		$('.bannar').fadeOut('fast');
 		$('.cake').fadeOut('fast').promise().done(function(){
-			$('.message').fadeIn('slow');
+			$('.message').css('display', 'flex').hide().fadeIn('slow');
+			$('.message-text p').css('display', 'none');
 		});
 		
-		var i;
+		var i = 1;
 
 		function msgLoop (i) {
-			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
-			i=i+1;
-			$("p:nth-child("+i+")").fadeIn('slow').delay(1000);
-			if(i==50){
-				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
+			$('.message-text p').css('display', 'none');
+			$(".message-text p:nth-child("+i+")").fadeIn('slow').delay(1500).fadeOut('slow').promise().done(function(){
+				$(this).css('display', 'none');
+				i=i+1;
+				if(i<=12){
+					msgLoop(i);
+				}
+				else{
+					$('.message').fadeOut('slow');
+					$('.balloons').show();
+					$('.bannar').fadeIn('fast');
 					$('.cake').fadeIn('fast');
-				});
-				
-			}
-			else{
-				msgLoop(i);
-			}			
-
-		});
-			// body...
+				}			
+			});
 		}
+		msgLoop(i);
 		
 		msgLoop(0);
 		

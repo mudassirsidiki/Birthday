@@ -1708,17 +1708,90 @@ html, body {
 	margin-top: 50px;
 }
 .message {
-	margin-top: 200px;
+	margin-top: 0;
 	display: none;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 40px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 10000;
+}
+.message-text {
+	text-align: left;
+	padding: 30px 5px 30px 30px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
 }
 .message p {
 	font-family: 'Signika', sans-serif;
-	font-size: 30px;
-	text-transform: uppercase;
-	color: #C4515C;
-	text-shadow: 2px 2px 2px #FFF;
+	font-size: 44px;
+	color: #C4516C;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 	display: none;
 	font-weight: bold;
+	margin-bottom: 18px;
+	line-height: 1.6;
+}
+.message-image {
+	text-align: center;
+	padding: 30px 30px 30px 5px;
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.fatima-photo {
+	max-width: 90%;
+	max-height: 70vh;
+	width: auto;
+	height: auto;
+	border-radius: 15px;
+	box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+	animation: slideInRight 1s ease-out;
+}
+
+@keyframes slideInRight {
+	from {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Hide the 7 FATIIII balloons when message is shown */
+.message:not([style*="display: none"]) ~ #b1,
+.message:not([style*="display: none"]) ~ #b2,
+.message:not([style*="display: none"]) ~ #b3,
+.message:not([style*="display: none"]) ~ #b4,
+.message:not([style*="display: none"]) ~ #b5,
+.message:not([style*="display: none"]) ~ #b6,
+.message:not([style*="display: none"]) ~ #b7 {
+	display: none !important;
+	opacity: 0 !important;
+}
+
+body.balloons-hidden #b1,
+body.balloons-hidden #b2,
+body.balloons-hidden #b3,
+body.balloons-hidden #b4,
+body.balloons-hidden #b5,
+body.balloons-hidden #b6,
+body.balloons-hidden #b7 {
+	display: none !important;
+	visibility: hidden !important;
+	opacity: 0 !important;
 }
 
 .btn-primary {
